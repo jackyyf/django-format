@@ -89,8 +89,9 @@ def format(parser, token):
 	if len(tokens) < 3: # At least one argument to format.
 		raise TemplateSyntaxError(u'At lease two argument should be provided.')
 	data = tokens[1]
-	if data[0] == data[-1] and data[0] in '\'"':
-		data = data[1:-1]
+	if data[0] != data[-1] or data[0] not in '\'"':
+		raise TemplateSyntaxError(u'Format string should be quoted')
+	data = data[1:-1]
 	if not data:
 		raise TemplateSyntaxError(u'Unexpected empty format string.')
 	args = []
@@ -110,8 +111,9 @@ def transformat(parser, token):
 	if len(tokens) < 3:
 		raise TemplateSyntaxError(u'At lease two argument should be provided')
 	data = tokens[1]
-	if data[0] == data[-1] and data[0] in '\'"':
-		data = data[1:-1]
+	if data[0] != data[-1] or data[0] not in '\'"':
+		raise TemplateSyntaxError(u'Format string should be quoted')
+	data = data[1:-1]
 	if not data:
 		raise TemplateSyntaxError(u'Unexpected empty format string.')
 	data = trans(data)

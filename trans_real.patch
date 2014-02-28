@@ -1,0 +1,11 @@
+--- /usr/local/lib/python2.7/dist-packages/django/utils/translation/trans_real.py	2014-02-14 18:17:40.000000000 +0800
++++ ./trans_real.py	2014-02-28 22:06:26.087442812 +0800
+@@ -477,7 +477,7 @@
+     return dot_re.sub(char, src)
+ 
+ context_re = re.compile(r"""^\s+.*context\s+((?:"[^"]*?")|(?:'[^']*?'))\s*""")
+-inline_re = re.compile(r"""^\s*trans\s+((?:"[^"]*?")|(?:'[^']*?'))(\s+.*context\s+((?:"[^"]*?")|(?:'[^']*?')))?\s*""")
++inline_re = re.compile(r"""^\s*trans(?:format)?\s+((?:"[^"]*?")|(?:'[^']*?'))(\s+.*context\s+((?:"[^"]*?")|(?:'[^']*?')))?\s*""")
+ block_re = re.compile(r"""^\s*blocktrans(\s+.*context\s+((?:"[^"]*?")|(?:'[^']*?')))?(?:\s+|$)""")
+ endblock_re = re.compile(r"""^\s*endblocktrans$""")
+ plural_re = re.compile(r"""^\s*plural$""")
