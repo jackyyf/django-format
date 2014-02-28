@@ -47,14 +47,19 @@ and multiple calls,
 
     {% format "Your email is {email}" email=$request.getUser.getEmail %}
 
-i18n are also welcomed, just add an entry in your .po file,
+i18n are also welcomed,
 
     {% transformat "Good morning! {user}" user=$request.user %}
 
+just add an entry to your .po file,
+
+    msgid "Good morning! {user}"
+    msgstr "{user}，早上好！"
+
 or let django add entries for you with `python manage.py makemessages` ([Patch required.](#django-patch)).
 
-Usage
-=====
+Installation
+============
 
 Copy whole django-format directory to your project root, add django-format 
 to your `INSTALLED_APPS` and `{% load format %}` to the top of your 
@@ -63,10 +68,10 @@ template, and everything should work.
 Django patch
 ============
 
-Since `transformat` is not standard tag, `makemessage` with django-admin.py 
+Since `transformat` is not a standard tag, `makemessage` with django-admin.py 
 or manage.py does not automaticly add entries to your .po file. You may 
-use trans\_real.patch to make it so. Patch is based on django 1.6.2 and
-not tested with other django release.
+use `trans_real.patch` to solve this problem. Patch is based on django 1.6.2
+and not tested with other django release.
 
 Donations
 =========
